@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use function Ramsey\Uuid\v1;
+
 class AdminController extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.parent');
+        return view('admin.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
