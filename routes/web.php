@@ -23,3 +23,7 @@ Route::get('/', function () {
 
 Route::resource('admin', AdminController::class);
 Route::resource('category', CategoryController::class);
+
+// Route Category
+
+
