@@ -1,43 +1,47 @@
 @extends('admin.parent')
 
 
-@section('title')
-@extends('admin.includes.parren')
+@section('content')
+    <div class="card">
+        <h1>Category Index</h1>
+        {{-- 錯誤表列 --}}
+        <hr>
+        <div class=" d-flex justify-content-end">
+            <a href="{{ route('category.create') }}" class="btn btn-outline-success">Create Category</a>
 
-@section('title')
-
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<div class="card p-4">
-    <h1>Category Index</h1>
-
-    <div class="container d-flex justify-content-end">
-        <a href="{{ route('category.create') }}" class="btn btn-success">Create Category</a>
-    </div>
-</div>
-
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('succes') }}
-</div>
-    
-@endif
-
-@endsection
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('succes') }}
         </div>
-    @endif
 
 
+        {{-- alere success --}}
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <table class="table">
+            <th>
+                <tr>
+                    <td>No</td>
+                    <td>Name</td>
+                    <td>Action</td>
+                </tr>
+            </th>
+            <tbody>
+                @foreach ($category as $row)
+                    <tr>
+                        <td>{{ $row->loop }}</td>
+                        <td>{{ $row->name }}</td>
+                        <td><a href="{{ route('category.show', $row->id) }}" class="btn btn-info">Show Categories</a>
+                            <form action="{{ route('category.destroy', $row->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
