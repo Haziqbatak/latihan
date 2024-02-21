@@ -1,25 +1,30 @@
 @extends('admin.parent')
 
-@section('content')
+@section('title')
 
-<div class="card p-4">
-
-    <h1>Create Category</h1>
-
-    <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-        <div class="form-floating mb-3">
-            <input type="tetx" class="form-control" id="floatingInput" placeholder="Kesehatan" name="name">
-            <label for="floatingInput">Name Category</label>
+<
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
 
-        <button type="submit" class="btn btn-primary">Create</button>
+    <div class="card p-4">
+        <h1>Category Index</h1>
 
-    </form>
+        <div class="container d-flex justify-content-end">
+            <a href="{{ route('category.create') }}" class="btn btn-success">Create Category</a>
+        </div>
+    </div>
 
-</div>
-
-</div>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('succes') }}
+        </div>
+    @endif
 
 @endsection

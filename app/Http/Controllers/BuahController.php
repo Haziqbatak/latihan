@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BuahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('Category.index');
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        //
     }
 
     /**
@@ -36,30 +34,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //lakukan function store
-        //lakukan validuasi
-
-        $this->validate($request,[
-            'name' => 'required'
-        ]);
-
-
-        //simpan data ke dalam data base
-        
-        if(
-            category::create([
-                'name' => $request->name,
-                'slug' => Str::slug($request->name)
-                ])
-        ){
-            return redirect()->route('category.index')->with(['sucess'], 'data berhasil');
-        }  else {
-            return redirect()->route('category.index')->with(['Erro'], 'data Gagal');
-        }
-
-        
+        //
     }
-
 
     /**
      * Display the specified resource.
